@@ -5,22 +5,25 @@
 Este documento presenta un análisis detallado de la Fundación Manos Verdes como comitente para el proyecto EcoExplorer AR. Para más información sobre la fundación, visite su [sitio web oficial](https://manos-verdes.org/).
 
 ## Introducción
-En esta sección se presenta la información y análisis del comitente para el proyecto EcoExplorer AR. Tras un exhaustivo relevamiento, partiendo de la idea de desarrollar un videojuego de realidad aumentada para la concientización ambiental, se seleccionó a la Fundación Manos Verdes como comitente ideal. Su experiencia en educación ambiental y su enfoque en las nuevas generaciones la posicionan como el aliado perfecto para este innovador proyecto tecnológico.
+En esta sección se presenta la información y análisis del comitente para el proyecto EcoExplorer AR. Tras un exhaustivo relevamiento, partiendo de la idea de desarrollar un videojuego de realidad aumentada para la concientización ambiental, se seleccionó a la Fundación Manos Verdes como comitente ideal. Su experiencia en educación ambiental y su enfoque en las nuevas generaciones la posicionan como el aliado perfecto para este proyecto tecnológico.
 
 ## Ficha del comitente
-
 - **Razón social**: Organización sin fines de lucro.
 - **Nombre**: Fundación Manos Verdes.
 - **Alta en la actividad**: 12 de octubre de 2010. 
 - **Naturaleza**: Medio ambiental.
 - **Responsables**: Verena Böhme.
 - **Dirección**: Ciudad Autónoma de Buenos Aires, Argentina.
-- **Breve descripción**: Promueven el intercambio de conocimientos y tecnologías ambientales a nivel internacional para desarrollar soluciones prácticas e innovadoras a nivel local, con el objetivo de lograr una mayor conciencia ambiental. Esta misión se alinea perfectamente con los objetivos de EcoExplorer AR, que busca utilizar la realidad aumentada para educar sobre temas ambientales de manera interactiva y atractiva.
+- **Breve descripción**: Promueven el intercambio de conocimientos y tecnologías ambientales a nivel internacional para desarrollar soluciones prácticas e innovadoras a nivel local, con el objetivo de lograr una mayor conciencia ambiental.
 
 ## Historia del comitente
-Fundada el 12 de octubre de 2010 en Argentina, Manos Verdes nació de la visión de Verena Boehme, quien notó el problema de la basura y su impacto en los paisajes naturales durante un viaje turístico. Esta perspectiva fresca y externa es precisamente lo que EcoExplorer AR busca brindar a sus usuarios: una nueva forma de ver y entender nuestro entorno y su fragilidad ecológica.
+Manos Verdes es una organización sin fines de lucro con sede principal en la Ciudad Autónoma de Buenos Aires, Argentina. La fundación fue fundada el 12 de octubre de 2010 en Argentina y en 2015 también en Alemania como Asociación Civil.
 
-Con 14 años de trayectoria en educación ambiental y cooperación internacional, la Fundación proporciona una base sólida de conocimientos y experiencias que nutrirán el contenido educativo de EcoExplorer AR. La expansión de la Fundación a Alemania en 2015 también ofrece una perspectiva internacional valiosa para el desarrollo del juego.
+Manos Verdes nace de la mano de su Directora Ejecutiva y fundadora Verena Boehme. De nacionalidad alemana, durante un viaje de turismo, Boehme notó el problema de la basura en Argentina y su impacto en los paisajes naturales. Esta observación la impulsó a tomar acción.
+
+La fuerza de voluntad por un futuro mejor y la puesta en acción en busca de la concientización ambiental formaron un piso firme para construir relaciones que dieron origen a la Fundación. 
+
+A lo largo de sus más de 14 años de existencia, Manos Verdes se ha enfocado en tres pilares fundamentales: la educación, la cooperación y el intercambio de conocimientos, todos orientados hacia la promoción de la sostenibilidad. Estos pilares han guiado el trabajo de la fundación, permitiéndoles ofrecer un conjunto diverso de posibilidades y oportunidades a las generaciones actuales y futuras.
 
 ## El comitente hoy
 Actualmente, la misión de la Fundación Manos Verdes es motivar a cada individuo a asumir una actitud responsable por un futuro sustentable de todos, en los aspectos económico, ecológico y social. Trabajan mano a mano con la sociedad, la ciencia, la política y la economía para lograr este objetivo.
@@ -69,15 +72,26 @@ La ciencia aporta los datos concretos necesarios para fundamentar los proyectos 
 La Fundación trabaja en la interacción y articulación de estas tres disciplinas para desarrollar nuevos horizontes. Colaboran con artistas como Joaquín Fargas para generar conciencia ambiental a través de talleres, charlas, conferencias y exposiciones en diferentes ámbitos. También organizan eventos internacionales que combinan arte, ciencia y medio ambiente, como la conferencia sobre "El Arte, la Ciencia y el Cambio Climático – en la Antártida" realizada en Hamburgo en 2017.
 
 ## Análisis de necesidades
-EcoExplorer AR surge como una solución creativa al problema de la falta de conciencia ambiental entre las nuevas generaciones. El juego se centra en la función social de la educación ambiental, utilizando la tecnología de realidad aumentada para hacer tangibles y comprensibles conceptos ambientales abstractos.
+
+El proceso de selección del comitente y la propuesta de proyecto surgen como una respuesta creativa a problemas reales, centrándose en la función social de la educación ambiental. La Fundación Manos Verdes ha identificado la necesidad de una mayor conciencia ambiental, especialmente entre las nuevas generaciones, y cómo esto impacta en el futuro de nuestro planeta.
+
+Las necesidades identificadas incluyen:
+
+1. Herramientas educativas innovadoras que capten la atención de los jóvenes.
+2. Métodos para hacer tangibles y comprensibles los conceptos ambientales abstractos.
+3. Formas de ampliar el alcance de los programas de educación ambiental existentes.
+4. Estrategias para fomentar un cambio de hábitos hacia prácticas más sostenibles.
+5. Medios para conectar la educación ambiental con las nuevas tecnologías.
 
 ## Propuesta
-EcoExplorer AR se presenta como una herramienta tecnológica innovadora que aborda las necesidades identificadas por la Fundación Manos Verdes:
 
-1. Ofrece una mayor conciencia ambiental a través de experiencias interactivas y atractivas.
-2. Se enfoca en las nuevas generaciones, el público objetivo principal de la Fundación.
-3. Utiliza tecnología de vanguardia (realidad aumentada) para hacer más accesibles y comprensibles los conceptos del cambio climático.
-4. Proporciona una plataforma para aplicar y difundir el conocimiento y experiencia acumulados por la Fundación.
-5. Permite la expansión del alcance e impacto de las actividades educativas de la Fundación.
+En respuesta a estas necesidades, se propone el desarrollo de un videojuego de realidad aumentada para la concientización ambiental, dirigido principalmente a niños y jóvenes. Esta propuesta se alinea con los objetivos y actividades de la Fundación Manos Verdes de la siguiente manera:
 
-En resumen, EcoExplorer AR es una propuesta que alinea perfectamente los objetivos de la Fundación Manos Verdes con las posibilidades que ofrece la tecnología moderna, creando una herramienta educativa poderosa y atractiva para fomentar la conciencia ambiental en las nuevas generaciones.
+1. Educación Interactiva: El videojuego ofrecerá experiencias interactivas y atractivas que promuevan una mayor conciencia ambiental, complementando los programas educativos existentes de la Fundación.
+2. Enfoque en Nuevas Generaciones: Al ser un videojuego, se dirige directamente al público objetivo principal de la Fundación: los jóvenes.
+3. Tecnología Innovadora: El uso de la realidad aumentada permitirá hacer más accesibles y comprensibles los conceptos del cambio climático y otros temas ambientales, alineándose con el eje de Ciencia, Arte y Tecnología de la Fundación.
+4. Plataforma de Difusión: El juego servirá como una nueva plataforma para aplicar y difundir el conocimiento y la experiencia acumulados por la Fundación en sus años de trabajo.
+5. Ampliación de Alcance: Esta herramienta tecnológica permitirá la expansión del alcance e impacto de las actividades educativas de la Fundación, llegando potencialmente a un público más amplio.
+6. Cambio de Hábitos: A través de desafíos y recompensas en el juego, se podrá fomentar la adopción de hábitos más sostenibles en la vida real de los jugadores.
+
+En resumen, esta propuesta de videojuego de realidad aumentada se presenta como una herramienta educativa innovadora que alinea perfectamente los objetivos de la Fundación Manos Verdes con las posibilidades que ofrece la tecnología moderna. Busca crear una experiencia atractiva y efectiva para fomentar la conciencia ambiental en las nuevas generaciones, abordando de manera creativa las necesidades identificadas por la Fundación.
