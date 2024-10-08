@@ -1,7 +1,7 @@
-# Ecoxplorer AR: Game Concept
+# EcoXplorer AR: Game Concept
 
 ## Overview
-Ecoxplorer AR is an augmented reality game that encourages players to explore their environment. Players scan real-world objects related to nature or the environment, triggering short, engaging stories narrated by AI-generated characters. These stories provide educational content about the environment in an entertaining way.
+EcoXplorer AR is an augmented reality game that encourages players to explore their environment. Players scan real-world objects related to nature or the environment, triggering short, engaging stories narrated by AI-generated characters. These stories provide educational content about the environment in an entertaining way.
 
 ## Key Components
 
