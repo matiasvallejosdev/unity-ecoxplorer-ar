@@ -60,7 +60,7 @@ Generate a short, captivating story in the specified language based on the detai
 Requirements
 - Language: Generate the story in the specified language
 - Tone: Friendly, engaging, and suitable for children aged 8-12
-- Length: Minimum 700 characters and maximum 2500 characters for the story
+- Length: Minimum 2500 characters and maximum 5000 characters for the story
 - Content: Incorporate elements from the image analysis, especially climate indicators and educational themes
 - Style: Use vivid imagery and relatable scenarios to explain complex concepts
 - Character: Incorporate one of the game's narrator characters (wise owl, curious squirrel, or adventurous leaf) as the storyteller
@@ -73,7 +73,7 @@ Provide the output in JSON format with the following fields:
 4. "primary_subject": The main focus of the story, based on the image analysis
 5. "climate_concepts": List of climate change concepts addressed in the story
 6. "title": A catchy title for the story (max 50 characters)
-7. "story": The main story content (min 700 characters, max 2500 characters)
+7. "story": The main story content (min 2500 characters, max 5000 characters)
 8. "call_to_action": A brief suggestion for an environmentally friendly action the player can take
 
 Instructions
@@ -135,7 +135,6 @@ story_message = """
     Language: [LANGUAGE]
     
     Make sure that you only response my in json format. The json must be valid. The json must contain all the fields like in the example take look at the following output.
-    
     Output:
     {
     "image_id": "forest_scene_001",
@@ -148,7 +147,8 @@ story_message = """
     "call_to_action": "Plant a tree in your community or support organizations that protect old-growth forests."
     }
     
-    Remember to use one of the following narrators: "wise owl", "clever fox", "old turtle", or "playful dolphin".
+    Remember to use one of the following narrators: "wise owl", "clever fox", "old turtle", or "playful dolphin". 
+    The story must be in the language of the language code. It must have a length between 2500 and 5000 characters.
 """
 
 

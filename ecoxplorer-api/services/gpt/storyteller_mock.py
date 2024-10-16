@@ -12,20 +12,20 @@ def lambda_handler(event, context):
     
     mock_story = {
         "image_id": "climate_extremes_01",
-        "language": language,
+        "language": "es",
         "narrator": "clever fox",
-        "primary_subject": "Impacto del cambio climático",
+        "primary_subject": "Impactos del Cambio Climático",
         "climate_concepts": [
-            "Patrones climáticos extremos",
-            "Consecuencias de la sequía",
-            "Desastres naturales y calentamiento global"
+            "Impacto del cambio climático en los patrones climáticos",
+            "Sequía y sus consecuencias",
+            "Desastres naturales relacionados con el calentamiento global"
         ],
-        "title": "Secretos del Clima Extremo",
-        "story": "Entre el humo y el calor de un día nublado, Felix el zorro astuto miraba las tierras áridas a lo lejos. 'Queridos amigos,' murmuró mientras caminaba cautelosamente entre los árboles chamuscados, 'aquí está el resultado de un planeta en transformación acelerada.' Con cuidado, señaló las cicatrices del suelo agrietado y la furia silenciosa en el aire. 'Estos problemas no están lejos,' explicó suavemente, 'sino más cerca de lo que imaginamos.' Describió cómo, en otro rincón, el giro de un huracán se perfilaba, presagiando cambios drásticos. 'Estos fenómenos son reflejos de un mundo que clama atención,' dijo mientras evitaba restos de un incendio reciente. Ante su mirada sagaz, no había criaturas allí, sólo un relato urgente a compartir. 'Cada acción cuenta,' concluyó con un brillo en sus ojos, 'transformemos esta atmósfera de desafío en una de esperanza y acción.'",
-        "call_to_action": "Únete a campañas de reforestación o apoya proyectos para mitigar el impacto climático en tu región.",
+        "title": "Extremos Climáticos y sus Consecuencias",
+        "story": "En un mundo donde los extremos climáticos son cada vez más comunes, Zorro Sabio corre velozmente para observar los diversos paisajes vulnerables al cambio climático. Se detiene cerca de un árbol que lucha por sobrevivir en medio de un incendio forestal, sus hojas chamuscadas por el fuego implacable. '¡Observad!', dice Zorro Sabio, 'estos incendios son cada vez más frecuentes debido al calentamiento global.' A continuación, muestra la tierra agrietada de una región árida, señalando que la sequía es un signo alarmante de los cambios que experimenta el planeta. Finalmente, mira hacia el mar, donde se forma el ojo de un huracán poderoso que se aproxima. 'Las tormentas más intensas son parte de esta nueva realidad', explica, 'y es crucial entender cómo nuestras acciones impactan el clima.' Mientras la mirada de Zorro Sabio se encuentra con la de los curiosos habitantes del bosque, añade, 'Debemos trabajar juntos para proteger nuestro hogar.'",
+        "call_to_action": "Involúcrate en organizaciones que luchan contra el cambio climático e informate sobre cómo puedes reducir tu huella de carbono.",
         "json_analysis": "{\"image_id\": \"climate_extremes_01\", \"primary_subject\": \"Climate Change Impacts\", \"environment_type\": \"Diverse: Wildfire, Arid Lands, Ocean\", \"climate_indicators\": [\"Wildfire\", \"Drought\", \"Hurricane\"], \"biodiversity\": {\"flora\": [\"Trees affected by fire\"], \"fauna\": [\"None detected\"]}, \"human_elements\": [\"None detected\"], \"weather_conditions\": \"Severe with fire, extreme dryness, and storm conditions\", \"color_palette\": [\"Orange\", \"Brown\", \"Blue\", \"White\"], \"emotional_tone\": \"Dramatic and threatening\", \"educational_themes\": [\"Impact of climate change on weather patterns\", \"Drought and its consequences\", \"Natural disasters related to global warming\"], \"storytelling_elements\": [\"A tree struggling to survive a wildfire\", \"The cracked earth illustrating severe drought\", \"The swirling eye of a hurricane approaching land\"], \"confidence_score\": 0.98, \"analysis_notes\": \"The composite image effectively illustrates diverse and severe impacts of climate change, providing distinct and engaging visual examples.\", \"image_url\": \"https://science.nasa.gov/wp-content/uploads/2023/11/Effects_page_triptych.jpeg?w=4096&format=jpeg\"}",
-        "audio_url": "https://ecoexplorerar-dev.s3.us-east-2.amazonaws.com/storyteller/tts_audio_1729035305.mp3",
-        "json_url": "https://ecoexplorerar-dev.s3.us-east-2.amazonaws.com/storyteller/response_1729035305.json"
+        "audio_url": "https://ecoxplorer-dev.s3.us-east-1.amazonaws.com/storyteller/tts_audio_1729093929.mp3",
+        "json_url": "https://ecoxplorer-dev.s3.us-east-1.amazonaws.com/storyteller/response_1729093929.json"
     }
 
     return success_response(mock_story)
