@@ -160,10 +160,12 @@ resources:
               Action: sts:AssumeRole
         ManagedPolicyArns:
           - ${self:custom.bucketPolicyArn}
+          - ${self:custom.bedrockPolicyArn}
 
 custom:
   bucketName: ecoxplorer-dev
   bucketRegion: us-east-1
   bucketPolicyArn: arn:aws:iam::680662318279:policy/ecoexplorerar-api-s3-bucket
+  bedrockPolicyArn: arn:aws:iam::680662318279:policy/ecoexplorerar-api-bedrock-stability-model-access
   layers:
     openAILayerPyArn: arn:aws:lambda:us-east-1:680662318279:layer:openai-aws-lambda:1

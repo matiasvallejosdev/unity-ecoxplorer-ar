@@ -1,4 +1,3 @@
-import random
 from common.utils.lambda_decorators import error_handling_decorator
 from common.utils.response_utils import success_response
 from common.utils.lambda_utils import load_body_from_event
