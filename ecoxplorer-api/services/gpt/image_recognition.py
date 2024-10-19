@@ -1,6 +1,8 @@
 import json
 import os
 import re
+from datetime import datetime
+import uuid
 import logging
 from typing import Dict, Any
 
@@ -72,7 +74,11 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 
     response = extract_json_from_response(res["content"])
 
-    metadata = {"image_url": image_url}
+    metadata = {
+        "image_id": str(uuid.uuid4()),
+        "image_url": image_url,
+        "date_created": datetime.now().isoformat(),
+    }
     body = response
     body.update(metadata)
 

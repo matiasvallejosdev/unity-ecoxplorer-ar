@@ -9,40 +9,49 @@ def lambda_handler(event, context):
     image_url = load_body_from_event(event).get("image_url", None)
     if image_url is None:
         return error_response("Missing image_url parameter.")
-
+    
+    # Mock response from image recognition (testing purposes)
     response = {
-        "image_id": "image_001",
-        "primary_subject": "Large pile of accumulated waste",
-        "environment_type": "landfill",
+        "primary_subject": "Impact of climate change on natural disasters",
+        "environment_type": "Varied: Forest, Arid land, Ocean",
         "climate_indicators": [
-            "Accumulation of non-biodegradable plastic waste",
-            "Potential soil and air pollution",
+            "Wildfire",
+            "Drought",
+            "Hurricane"
         ],
-        "biodiversity": {"flora": ["None detected"], "fauna": ["None detected"]},
+        "biodiversity": {
+            "flora": [
+                "Tree affected by fire"
+            ],
+            "fauna": [
+                "None detected"
+            ]
+        },
         "human_elements": [
-            "Piles of various types of waste including plastics, paper, and metal items"
+            "None detected"
         ],
-        "weather_conditions": "Clear sky with no visible weather phenomena",
+        "weather_conditions": "Extreme weather events depicted",
         "color_palette": [
-            "Varied colors due to different types of waste compositions",
-            "Blue sky",
+            "Orange",
+            "Brown",
+            "White",
+            "Blue"
         ],
-        "emotional_tone": "Overwhelming and alarming",
+        "emotional_tone": "Urgent and alarming",
         "educational_themes": [
-            "Waste management",
-            "Recycling importance",
-            "Impact of pollution on the environment",
-            "Human responsibility towards environmental cleanliness",
-            "Hazards of non-biodegradable materials",
+            "Causes and effects of climate change",
+            "Impact of wildfires, droughts, and hurricanes",
+            "Importance of environmental protection"
         ],
         "storytelling_elements": [
-            "The journey of a plastic bottle from use to disposal",
-            "The impact of improper waste disposal on soil and air",
-            "The role of recycling in reducing landfill waste",
-            "The story of a landfill worker sorting through waste",
+            "A tree trying to survive a forest fire",
+            "Parched land yearning for rain",
+            "The power of a hurricane over the ocean"
         ],
-        "confidence_score": 0.97,
-        "analysis_notes": "The image is clear and the elements are easily distinguishable. The focus on waste management can spark significant educational conversations among young learners.",
-        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLyX0La3Jqwnu6v9fBGPNxfosVwMzD4HbePA&s",
+        "confidence_score": 0.98,
+        "analysis_notes": "The image effectively captures three distinct impacts of climate change, useful for illustrating interconnected environmental themes. The lack of human elements highlights the natural scale of these events.",
+        "image_id": "3d0ba72b-2ad7-42ed-8fe0-f30fd4c682e2",
+        "image_url": "https://science.nasa.gov/wp-content/uploads/2023/11/Effects_page_triptych.jpeg?w=4096&format=jpeg",
+        "date_created": "2024-10-19T18:44:08.546694"
     }
     return success_response(response)

@@ -29,7 +29,7 @@ Structure and Instructions:
 Provide your response in a structured 
 JSON format as follows:
 
-```json\n{\n  \"image_id\": \"unique_identifier_for_the_image\",\n  \"primary_subject\": \"The main focus of the image\",\n  \"environment_type\": \"e.g., forest, ocean, urban, etc.\",\n  \"climate_indicators\": [\"List of visible climate change indicators\"],\n  \"biodiversity\": {\n    \"flora\": [\"List of identifiable plant species or types\"],\n    \"fauna\": [\"List of identifiable animal species or types\"]\n  },\n  \"human_elements\": [\"Any human-made structures or influences visible\"],\n  \"weather_conditions\": \"Description of visible weather or atmospheric conditions\",\n  \"color_palette\": [\"Dominant colors in the image\"],\n  \"emotional_tone\": \"The overall mood or feeling conveyed by the image\",\n  \"educational_themes\": [\"Potential environmental or climate-related lessons\"],\n  \"storytelling_elements\": [\"Aspects of the image that could be used in a narrative\"],\n  \"confidence_score\": 0.95,\n  \"analysis_notes\": \"Any additional observations or uncertainties\"\n}\n```
+```json\n{\n  \"primary_subject\": \"The main focus of the image\",\n  \"environment_type\": \"e.g., forest, ocean, urban, etc.\",\n  \"climate_indicators\": [\"List of visible climate change indicators\"],\n  \"biodiversity\": {\n    \"flora\": [\"List of identifiable plant species or types\"],\n    \"fauna\": [\"List of identifiable animal species or types\"]\n  },\n  \"human_elements\": [\"Any human-made structures or influences visible\"],\n  \"weather_conditions\": \"Description of visible weather or atmospheric conditions\",\n  \"color_palette\": [\"Dominant colors in the image\"],\n  \"emotional_tone\": \"The overall mood or feeling conveyed by the image\",\n  \"educational_themes\": [\"Potential environmental or climate-related lessons\"],\n  \"storytelling_elements\": [\"Aspects of the image that could be used in a narrative\"],\n  \"confidence_score\": 0.95,\n  \"analysis_notes\": \"Any additional observations or uncertainties\"\n}\n```
 
 Instructions:
 1. Examine the image thoroughly, identifying all relevant environmental and climate-related elements.
@@ -67,14 +67,13 @@ Requirements
 
 Output Structure
 Provide the output in JSON format with the following fields:
-1. "image_id": The unique identifier for the image from the input
-2. "language": The language code of the generated story
-3. "narrator": The character narrating the story (choose one: "wise owl", "clever fox", "old turtle", or "playful dolphin")
-4. "primary_subject": The main focus of the story, based on the image analysis
-5. "climate_concepts": List of climate change concepts addressed in the story
-6. "title": A catchy title for the story (max 50 characters)
-7. "story": The main story content (min 2500 characters, max 5000 characters)
-8. "call_to_action": A brief suggestion for an environmentally friendly action the player can take
+1. "language": The language code of the generated story
+2. "narrator": The character narrating the story (choose one: "wise owl", "clever fox", "old turtle", or "playful dolphin")
+3. "primary_subject": The main focus of the story, based on the image analysis
+4. "climate_concepts": List of climate change concepts addressed in the story
+5. "title": A catchy title for the story (max 50 characters)
+6. "story": The main story content (min 2500 characters, max 5000 characters)
+7. "call_to_action": A brief suggestion for an environmentally friendly action the player can take
 
 Instructions
 1. Ensure all content is generated in the specified language.
@@ -93,7 +92,6 @@ Example
 Input:
 [IMAGE_ANALYSIS]:
     {
-    "image_id": "forest_scene_001",
     "primary_subject": "Ancient redwood tree",
     "environment_type": "Old-growth forest",
     "climate_indicators": ["Healthy forest ecosystem", "Diverse plant life"],
@@ -114,7 +112,6 @@ Input:
 
 Output:
     {
-    "image_id": "forest_scene_001",
     "language": "en",
     "narrator": "wise owl",
     "primary_subject": "Ancient redwood tree",
@@ -137,7 +134,6 @@ story_message = """
     Make sure that you only response my in json format. The json must be valid. The json must contain all the fields like in the example take look at the following output.
     Output:
     {
-    "image_id": "forest_scene_001",
     "language": "en",
     "narrator": "wise owl",
     "primary_subject": "Ancient redwood tree",
@@ -147,7 +143,7 @@ story_message = """
     "call_to_action": "Plant a tree in your community or support organizations that protect old-growth forests."
     }
     
-    Remember to use one of the following narrators: "wise owl", "clever fox", "old turtle", or "playful dolphin". 
+    Remember to use one of the following narrators: "wise owl", "clever fox", "old turtle", or "playful dolphin". The character must be in lowercase and in english.
     The story must be in the language of the language code. It must have a length between 2500 and 5000 characters.
 """
 

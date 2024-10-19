@@ -115,7 +115,6 @@ functions:
     description: Storyteller for Ecoexplorer AR Game - ${self:provider.stage} stage
     memorySize: 128
     timeout: 30
-    role: s3BucketRole
     events:
       - http:
           path: /gpt/storyteller
@@ -142,6 +141,39 @@ functions:
       patterns:
         - "services/gpt/storyteller_mock.py"
         - "common/**/*.py"
+  voice_generator:
+    handler: services/gpt/voice_generator.lambda_handler
+    name: ${self:service}-${self:provider.stage}-voice-generator
+    description: Voice Generator for Ecoexplorer AR Game - ${self:provider.stage} stage
+    memorySize: 128
+    timeout: 30
+    role: s3BucketRole
+    events:
+      - http:
+          path: /gpt/voice-generator
+          method: POST
+          private: true
+    layers:
+      - ${self:custom.layers.openAILayerPyArn}
+    package:
+      patterns:
+        - "services/gpt/voice_generator.py"
+        - "services/gpt/config/**/*.py"
+        - "services/gpt/src/**/*.py"
+        - "common/**/*.py"
+  voice_generator_mock:
+    handler: services/gpt/voice_generator_mock.lambda_handler
+    name: ${self:service}-${self:provider.stage}-voice-generator-mock
+    description: Voice Generator mock for testing - ${self:provider.stage} stage
+    events:
+      - http:
+          path: /gpt/voice-generator-mock
+          method: POST
+          private: true
+    package:
+      patterns:
+        - "services/gpt/voice_generator_mock.py"
+        - "common/**/*.py"  
 
 resources:
   Resources:
