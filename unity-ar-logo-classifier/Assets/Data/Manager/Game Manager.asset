@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68ab7f210bb5641c089347f1f48eacb5, type: 3}
+  m_Name: Game Manager
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 5a8220c374f1a427697eeefba5b48af1, type: 2}
+  playerStories: []
+  textureWidth: 750
+  textureHeight: 750
+  saveLocalScreenshoot: 1
+  recogntionObjects:
+  - {fileID: 11400000, guid: 7a7c2eed4629c43bdadf9e174de0fa1a, type: 2}
+  - {fileID: 11400000, guid: efa0babbb53cc40078fc5f082d6149e7, type: 2}
+  - {fileID: 11400000, guid: c824c52453a124c8cbeac232526e9c81, type: 2}
+  maxNumberOfImages: 10
+  runtimeImageLibrary: {fileID: 11400000, guid: a8828de2a74c542caa7bbd10101f5c64,
+    type: 2}

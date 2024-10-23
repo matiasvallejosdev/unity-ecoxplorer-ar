@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ef60e5479f04f03b2b65778873f926, type: 3}
+  m_Name: ApiService
+  m_EditorClassIdentifier: 
+  API_URL: https://31a79nfmwj.execute-api.us-east-1.amazonaws.com
+  API_VERSION: dev
+  API_KEY: Ei1TNY3kKmafZrwKFqLIFyoBmdCbKJZ8WdalaxQ7
+  API_KEY_HEADER: x-api-key
