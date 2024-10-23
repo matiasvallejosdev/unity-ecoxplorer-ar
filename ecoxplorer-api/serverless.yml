@@ -27,8 +27,8 @@ provider:
     OPENAI_GPTMODEL: ${env:OPENAI_GPTMODEL}
     OPENAI_TEMPERATURE: ${env:OPENAI_TEMPERATURE}
     OPENAI_TOKENS: ${env:OPENAI_TOKENS}
-    S3_BUCKET_NAME: ${self:custom.bucketName}
-    S3_BUCKET_REGION: ${self:custom.bucketRegion}
+    S3_BUCKET_NAME: ${env:S3_BUCKET_NAME}
+    S3_BUCKET_REGION: ${env:S3_BUCKET_REGION}
 
 package:
   individually: true
@@ -195,8 +195,6 @@ resources:
           - ${self:custom.bedrockPolicyArn}
 
 custom:
-  bucketName: ecoxplorer-dev
-  bucketRegion: us-east-1
   bucketPolicyArn: arn:aws:iam::680662318279:policy/ecoexplorerar-api-s3-bucket
   bedrockPolicyArn: arn:aws:iam::680662318279:policy/ecoexplorerar-api-bedrock-stability-model-access
   layers:

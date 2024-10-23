@@ -5,7 +5,7 @@ import boto3
 from common.utils.lambda_decorators import error_handling_decorator
 from common.utils.response_utils import success_response
 
-s3_client = boto3.client("s3")
+s3_client = boto3.client('s3', config=boto3.session.Config(signature_version='s3v4'))
 s3_bucket_name = os.getenv("S3_BUCKET_NAME")
 
 
