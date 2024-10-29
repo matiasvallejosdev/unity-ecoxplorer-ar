@@ -1,8 +1,12 @@
-from typing import List
+from typing import List, Dict, Any
 from abc import ABC, abstractmethod
 
 
 class ModelInterface(ABC):
+    @abstractmethod
+    def set_system_message(self, system_message: str):
+        pass
+
     @abstractmethod
     def validate_chat_request(self, messages: List) -> bool:
         """Validate chat request.
@@ -25,29 +29,15 @@ class ModelInterface(ABC):
         """
         pass
 
-    @abstractmethod
-    def image_generation(
-        self,
-        prompt: str,
-        negprompt: List[str],
-        style_preset: str,
-        clip_guidance_preset: str,
-        sampler: str,
-        width: int,
-        height: int,
-    ) -> dict:
-        """Image generation from a given prompt.
 
+class AudioModelInterface(ABC):
+    @abstractmethod
+    def text_to_speech(self, text: str) -> Dict[str, Any]:
+        """Convert text to speech using an API.
         Args:
-            prompt (str): Prompt for generate an image.
-            negprompt (List[str]): List of negative prompts.
-            style_preset (str): Style preset for the image.
-            clip_guidance_preset (str): CLIP guidance preset.
-            sampler (str): Sampler to use for image generation.
-            width (int): Width of the generated image.
-            height (int): Height of the generated image.
+            text (str): The text to convert to speech.
 
         Returns:
-            dict: Return a dictionary containing the generated image information.
+            Dict[str, Any]: A dictionary containing the status and either the audio data or an error message.
         """
         pass

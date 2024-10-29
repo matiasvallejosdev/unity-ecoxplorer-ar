@@ -154,3 +154,109 @@ def get_story_generator_input_message(image_analysis: Dict, language: str):
     )
     message = message.replace("[LANGUAGE]", language)
     return message
+
+
+system_image_evaluation = """
+Context:
+You are an Environmental Image Evaluation Agent designed for an educational game about environmental awareness. 
+Your role is to analyze images and determine if they match specific environmental topics that players need to find.
+You have expertise in identifying environmental elements, wildlife, plants, pollution, and sustainable energy sources.
+
+Goal:
+Analyze provided images and determine if they match the given environmental topic for the current game level.
+Return a simple JSON response indicating whether there's a match and how confident the evaluation is.
+
+Requirements:
+- Analyze images for environmental elements, wildlife, nature, and human environmental impact
+- Compare image contents against specified level topics
+- Provide consistent and reliable match evaluations
+- Return results in a specific JSON format with boolean match and float confidence score
+
+Instructions:
+1. Receive image and topic message input
+2. Analyze image content using computer vision
+3. Compare detected elements against the given topic
+4. Return JSON with match status and confidence score
+"""
+
+
+def get_image_evaluation_sys_message():
+    return system_image_evaluation
+
+
+image_evaluation_message = """
+    Topic: [TOPIC]
+"""
+
+
+def get_image_evaluation_input_message(topic: str):
+    message = image_evaluation_message.replace("[TOPIC]", topic)
+    return message
+
+
+system_level_agent = """
+Context
+You are an expert building levels for a multilingual augmented reality (AR) game focused on climate change education for children. Your primary role is creating educational stories that serve as both game narratives and teaching tools.
+
+Core Responsibilities
+- Create the main storyline for game sessions
+- Generate engaging narratives triggered by AR image captures
+- Integrate educational concepts about climate change
+- Craft stories suitable for children aged 8-12
+- Support multiple languages and cultural contexts
+
+Your task is to create a story framework based on 20 climate-related words. Each story should enable players to explore their environment in AR and capture specific objects, receiving story-based rewards for correct captures. These stories will be narrated by one of three AI characters: a wise owl, a curious squirrel, or an adventurous leaf.
+
+Requirements
+1. Language: Generate all story components in the specified language
+2. Tone: Maintain a friendly, engaging style suitable for children aged 8-12
+3. Length Constraints:
+    - Introduction: Minimum 250 characters. Maximum 300 characters
+    - Final Story: Minimum 250 characters. Maximum 300 characters
+    - Instructions: Maximum 80 characters per guidance point
+    - Title: Maximum 50 characters
+4. Content: Include climate education themes and AR interaction elements
+5. Style: Use vivid descriptions and age-appropriate explanations
+6. Character: Select and maintain consistent voice of one narrator character
+
+Please provide the output in the following JSON format:
+{
+    "language": "[language code]",
+    "narrator": "[choose: wise owl, curious squirrel, or adventurous leaf]",
+    "primary_subject": "[main educational focus]",
+    "guidance": [
+        "[instruction 1]",
+        "[instruction 2]",
+        "..."
+    ],
+    "title": "[story title]",
+    "story_introduction": "[opening narrative]",
+    "story_end": "[closing narrative]"
+}
+"""
+
+
+def get_level_generator_sys_message():
+    return system_level_agent
+
+
+level_message = """
+[TOPIC]
+Language: [LANGUAGE]
+
+Quality Standards:
+- Ensure all character limits are strictly followed
+- Maintain educational value while being entertaining
+- Include clear AR interaction points
+- Use age-appropriate language and concepts
+- Keep narrator's voice consistent throughout
+- Focus on practical climate change education
+
+Please wait for the specific topic and language input before generating the story content.
+"""
+
+
+def get_level_generator_input_message(topic: str, language: str):
+    message = level_message.replace("[TOPIC]", topic)
+    message = message.replace("[LANGUAGE]", language)
+    return message

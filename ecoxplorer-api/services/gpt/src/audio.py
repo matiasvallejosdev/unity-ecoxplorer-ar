@@ -1,20 +1,8 @@
+import io
 from typing import Dict, Any, Optional
 import openai
-import io
-from abc import ABC, abstractmethod
 
-
-class AudioModelInterface(ABC):
-    @abstractmethod
-    def text_to_speech(self, text: str) -> Dict[str, Any]:
-        """Convert text to speech using an API.
-        Args:
-            text (str): The text to convert to speech.
-
-        Returns:
-            Dict[str, Any]: A dictionary containing the status and either the audio data or an error message.
-        """
-        pass
+from .models import AudioModelInterface
 
 
 class OpenAITTSModel(AudioModelInterface):
@@ -74,7 +62,9 @@ class OpenAITTSModel(AudioModelInterface):
             return {"status": "error", "content": str(e)}
 
 
-def create_tts_model(provider: str, api_key: str, **kwargs) -> Optional[AudioModelInterface]:
+def create_tts_model(
+    provider: str, api_key: str, **kwargs
+) -> Optional[AudioModelInterface]:
     if provider.lower() == "openai":
         return OpenAITTSModel(api_key, **kwargs)
     else:

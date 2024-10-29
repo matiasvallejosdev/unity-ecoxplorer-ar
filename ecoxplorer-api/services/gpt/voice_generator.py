@@ -11,27 +11,27 @@ from common.utils.lambda_utils import load_body_from_event
 
 def parse_and_validate(event):
     body = load_body_from_event(event)
-    story_id = body.get("story_id")
+    voice_id = body.get("voice_id")
     story_text = body.get("story")
     narrator = body.get("narrator")
-    if not story_text or not narrator or not story_id:
-        raise ValueError("Story text, narrator, and story_id are required.")
-    return story_text, narrator, story_id
+    if not story_text or not narrator or not voice_id:
+        raise ValueError("Story text, narrator, and voice_id are required.")
+    return story_text, narrator, voice_id
 
 
 @error_handling_decorator
 def lambda_handler(event, context):
-    story_text, narrator, story_id = parse_and_validate(event)
-    voice_output_url, voice = generate_voice(story_text, narrator, story_id)
+    story_text, narrator, voice_id = parse_and_validate(event)
+    voice_output_url, voice = generate_voice(story_text, narrator, voice_id)
     body = {
-        "story_id": story_id,
+        "voice_id": voice_id,
         "voice_story_output": voice_output_url,
         "voice": voice,
     }
     return success_response(body)
 
 
-def generate_voice(story_text, narrator, story_id):
+def generate_voice(story_text, narrator, voice_id):
     tts_model = OpenAITTSModel(api_key=os.environ.get("OPENAI_API_KEY"))
     voice = select_character_voice(narrator)
     tts_model.set_voice(voice)
@@ -41,7 +41,7 @@ def generate_voice(story_text, narrator, story_id):
         raise ValueError(f"Error generating TTS: {tts_result.get('content')}")
 
     # Upload to S3 and get URL
-    voice_output_url = upload_to_s3(tts_result, story_id)
+    voice_output_url = upload_to_s3(tts_result, voice_id)
     return voice_output_url, voice
 
 
@@ -59,11 +59,11 @@ def select_character_voice(character):
         return "alloy"  # Default voice
 
 
-def upload_to_s3(tts_result, story_id):
+def upload_to_s3(tts_result, voice_id):
     s3_client = boto3.client("s3")
     bucket_name = os.environ.get("S3_BUCKET_NAME")
-    folder_name = "storyteller"
-    audio_file_name = f"{folder_name}/tts_audio_{story_id}.mp3"
+    folder_name = "voices"
+    audio_file_name = f"{folder_name}/tts_audio_{voice_id}.mp3"
 
     try:
         # Upload audio file to S3

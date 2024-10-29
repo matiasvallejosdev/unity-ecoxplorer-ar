@@ -2,27 +2,26 @@ import json
 import os
 import uuid
 from datetime import datetime
-import re
-
-from typing import Dict, Any
 
 from common.utils.lambda_decorators import error_handling_decorator
 from common.utils.response_utils import success_response
 from common.utils.lambda_utils import load_body_from_event
+from common.utils.parser import extract_json_from_response
 
-from .src.storyteller_agent import Storyteller
+from .src.agents.storyteller_agent import Storyteller
 from .src.openai import OpenAIModel
 
 from .config.prompts import get_story_teller_sys_message
 
+
 def get_storyteller_model():
+    system_message = get_story_teller_sys_message()
     model = OpenAIModel(
         api_key=os.getenv("OPENAI_API_KEY"),
         temperature=float(os.getenv("OPENAI_TEMPERATURE", "0.7")),
         model_engine=os.getenv("OPENAI_GPTMODEL"),
-        max_tokens=int(os.getenv("OPENAI_TOKENS", "1000")),
+        max_tokens=int(os.getenv("OPENAI_TOKENS", "1000"))
     )
-    system_message = get_story_teller_sys_message()
     storyteller = Storyteller(model, system_message)
     return storyteller
 
@@ -35,18 +34,6 @@ def parse_and_validate(event):
 
     language = body.get("language", "en")
     return image_analysis, language
-
-
-def extract_json_from_response(content: str) -> Dict[str, Any]:
-    json_match = re.search(r"```json\n(.*?)\n```", content, re.DOTALL)
-    if json_match:
-        json_content = json_match.group(1)
-        try:
-            return json.loads(json_content)
-        except json.JSONDecodeError as e:
-            raise ValueError("Invalid JSON in the response.")
-    else:
-        raise ValueError("No JSON content found in the response.")
 
 
 @error_handling_decorator

@@ -16,6 +16,10 @@ class OpenAIModel(ModelInterface):
         self.model_engine = model_engine
         self.temperature = temperature
         self.max_tokens = max_tokens
+        self.system_message = "You are a helpful assistant."
+
+    def set_system_message(self, system_message: str):
+        self.system_message = system_message
 
     def validate_chat_request(self, messages: List) -> bool:
         if not isinstance(messages, list) or not messages:
@@ -35,9 +39,14 @@ class OpenAIModel(ModelInterface):
             }
 
         try:
+            # Add the system message to the beginning of the messages list
+            full_messages = [
+                {"role": "system", "content": self.system_message}
+            ] + messages
+
             chat = openai.chat.completions.create(
                 model=self.model_engine,
-                messages=messages,
+                messages=full_messages,
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,
             )
@@ -59,24 +68,4 @@ class OpenAIModel(ModelInterface):
                 "status": "error",
                 "role": "system",
                 "content": "An unexpected error occurred.",
-            }
-
-    def image_generation(
-        self,
-        prompt: str,
-        negprompt: List[str],
-        style_preset: str,
-        clip_guidance_preset: str,
-        sampler: str,
-        width: int,
-        height: int,
-    ) -> dict:
-        try:
-            response = openai.Image.create(prompt=prompt, n=1, size=f"{width}x{height}")
-            return {"status": "success", "image_url": response["data"][0]["url"]}
-        except Exception as e:
-            logger.error(f"Unexpected error in image generation: {str(e)}")
-            return {
-                "status": "error",
-                "content": "An unexpected error occurred during image generation.",
             }

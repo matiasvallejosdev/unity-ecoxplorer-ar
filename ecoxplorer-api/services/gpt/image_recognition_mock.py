@@ -1,16 +1,21 @@
+from typing import Dict, Any
+
 from common.utils.lambda_decorators import error_handling_decorator
 from common.utils.response_utils import success_response
 from common.utils.lambda_utils import load_body_from_event
 from common.utils.error_handler import error_response
 
+def parse_and_validate(event: Dict[str, Any]) -> str:
+    body = load_body_from_event(event)
+    image_url = body.get("image_url")
+    if not image_url:
+        raise ValueError("Image URL is required.")
+    return image_url
 
 @error_handling_decorator
 def lambda_handler(event, context):
-    image_url = load_body_from_event(event).get("image_url", None)
-    if image_url is None:
-        return error_response("Missing image_url parameter.")
+    parse_and_validate(event)
     
-    # Mock response from image recognition (testing purposes)
     response = {
         "primary_subject": "Impact of climate change on natural disasters",
         "environment_type": "Varied: Forest, Arid land, Ocean",
