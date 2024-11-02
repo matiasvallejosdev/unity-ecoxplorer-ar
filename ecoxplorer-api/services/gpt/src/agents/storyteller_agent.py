@@ -1,7 +1,7 @@
 from typing import Dict
 from ..models import ModelInterface
 
-from ...config.prompts import get_story_generator_input_message
+from ...config.prompts import get_input_story_generator_agent
 
 
 class Storyteller:
@@ -13,11 +13,11 @@ class Storyteller:
     def __str__(self) -> str:
         return "Welcome to the AR Storyteller!"
 
-    def generate_story(self, json_analysis: Dict, language: str) -> str:
-        if not json_analysis or not language:
-            raise ValueError("Invalid request.")
+    def generate_story(self, image_analysis: Dict, topic: str, language: str) -> str:
+        if not image_analysis or not topic or not language:
+            raise ValueError("Invalid request. All parameters are required.")
 
-        message = get_story_generator_input_message(json_analysis, language)
+        message = get_input_story_generator_agent(image_analysis, topic, language)
         self.messages.append({"role": "user", "content": message})
         response = self.model.chat_completion(self.messages)
         return response

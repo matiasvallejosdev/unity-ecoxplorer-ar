@@ -1,7 +1,6 @@
 import os
 from datetime import datetime
 import uuid
-import logging
 from typing import Dict, Any
 
 from common.utils.lambda_decorators import error_handling_decorator
@@ -12,7 +11,7 @@ from common.utils.parser import extract_json_from_response
 from .src.agents.visiongpt_agent import VisionGPT
 from .src.openai import OpenAIModel
 
-from .config.prompts import get_image_recognition_sys_message
+from .config.prompts import get_image_analyzer_agent
 
 
 def get_vision_gpt_model() -> VisionGPT:
@@ -22,7 +21,7 @@ def get_vision_gpt_model() -> VisionGPT:
         model_engine=os.getenv("OPENAI_GPTMODEL", "gpt-3.5-turbo"),
         max_tokens=int(os.getenv("OPENAI_TOKENS", "150")),
     )
-    system_message = get_image_recognition_sys_message()
+    system_message = get_image_analyzer_agent()
     visiongpt = VisionGPT(model, system_message)
     return visiongpt
 

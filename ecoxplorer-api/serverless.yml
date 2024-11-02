@@ -77,19 +77,6 @@ functions:
       patterns:
         - "services/files/get_presigned_url_s3.py"
         - "common/**/*.py"
-  image_recognition_mock:
-    handler: services/gpt/image_recognition_mock.lambda_handler
-    name: ${self:service}-${self:provider.stage}-image-recognition-mock
-    description: Image Recognition mock for testing - ${self:provider.stage} stage
-    events:
-      - http:
-          path: /gpt/image-recognition-mock
-          method: POST
-          private: true
-    package:
-      patterns:
-        - "services/gpt/image_recognition_mock.py"
-        - "common/**/*.py"
   image_recognition:
     handler: services/gpt/image_recognition.lambda_handler
     name: ${self:service}-${self:provider.stage}-image-recognition
@@ -108,6 +95,19 @@ functions:
         - "services/gpt/image_recognition.py"
         - "services/gpt/config/**/*.py"
         - "services/gpt/src/**/*.py"
+        - "common/**/*.py"
+  image_recognition_mock:
+    handler: services/gpt/image_recognition_mock.lambda_handler
+    name: ${self:service}-${self:provider.stage}-image-recognition-mock
+    description: Image Recognition mock for testing - ${self:provider.stage} stage
+    events:
+      - http:
+          path: /gpt/image-recognition-mock
+          method: POST
+          private: true
+    package:
+      patterns:
+        - "services/gpt/image_recognition_mock.py"
         - "common/**/*.py"
   storyteller:
     handler: services/gpt/storyteller.lambda_handler
@@ -174,69 +174,69 @@ functions:
       patterns:
         - "services/gpt/voice_generator_mock.py"
         - "common/**/*.py"
-  image_topic_match:
-    handler: services/gpt/image_topic_match.lambda_handler
-    name: ${self:service}-${self:provider.stage}-image-topic-match
-    description: Image Topic Match for Ecoexplorer AR Game - ${self:provider.stage} stage
+  image_match:
+    handler: services/gpt/image_match.lambda_handler
+    name: ${self:service}-${self:provider.stage}-image-match
+    description: Image Match for Ecoexplorer AR Game - ${self:provider.stage} stage
     memorySize: 128
     timeout: 30
     events:
       - http:
-          path: /gpt/image-topic-match
+          path: /gpt/image-match
           method: POST
           private: true
     layers:
       - ${self:custom.layers.openAILayerPyArn}
     package:
       patterns:
-        - "services/gpt/image_topic_match.py"
+        - "services/gpt/image_match.py"
         - "services/gpt/config/**/*.py"
         - "services/gpt/src/**/*.py"
         - "common/**/*.py"
-  image_topic_match_mock:
-    handler: services/gpt/image_topic_match_mock.lambda_handler
-    name: ${self:service}-${self:provider.stage}-image-topic-match-mock
-    description: Image Topic Match mock for testing - ${self:provider.stage} stage
+  image_match_mock:
+    handler: services/gpt/image_match_mock.lambda_handler
+    name: ${self:service}-${self:provider.stage}-image-match-mock
+    description: Image Match mock for testing - ${self:provider.stage} stage
     events:
       - http:
-          path: /gpt/image-topic-match-mock
+          path: /gpt/image-match-mock
           method: POST
           private: true
     package:
       patterns:
-        - "services/gpt/image_topic_match_mock.py"
+        - "services/gpt/image_match_mock.py"
         - "common/**/*.py"
-  level_generator:
-    handler: services/gpt/level_generator.lambda_handler
-    name: ${self:service}-${self:provider.stage}-level-generator
-    description: Level Generator for Ecoexplorer AR Game - ${self:provider.stage} stage
+  level_builder:
+    handler: services/gpt/level_builder.lambda_handler
+    name: ${self:service}-${self:provider.stage}-level-builder
+    description: Level Builder for Ecoexplorer AR Game - ${self:provider.stage} stage
     memorySize: 128
     timeout: 30
     events:
       - http:
-          path: /gpt/level-generator
+          path: /gpt/level-builder
           method: POST
           private: true
     layers:
       - ${self:custom.layers.openAILayerPyArn}
     package:
       patterns:
-        - "services/gpt/level_generator.py"
+        - "services/gpt/level_builder.py"
         - "services/gpt/config/**/*.py"
         - "services/gpt/src/**/*.py"
         - "common/**/*.py"
-  level_generator_mock:
-    handler: services/gpt/level_generator_mock.lambda_handler
-    name: ${self:service}-${self:provider.stage}-level-generator-mock
-    description: Level generator mock for testing - ${self:provider.stage} stage
+  level_builder_mock:
+    handler: services/gpt/level_builder_mock.lambda_handler
+    name: ${self:service}-${self:provider.stage}-level-builder-mock
+    description: Level builder mock for testing - ${self:provider.stage} stage
     events:
       - http:
-          path: /gpt/level-generator-mock
+          path: /gpt/level-builder-mock
           method: POST
           private: true
     package:
       patterns:
-        - "services/gpt/level_generator_mock.py"
+        - "services/gpt/level_builder_mock.py"
         - "common/**/*.py"
 
 resources:

@@ -1,42 +1,29 @@
 from common.utils.lambda_decorators import error_handling_decorator
 from common.utils.response_utils import success_response
-from common.utils.lambda_utils import load_body_from_event
-from common.utils.error_handler import error_response
-
-
-def parse_and_validate(event):
-    body = load_body_from_event(event)
-    image_analysis = body.get("image_analysis")
-    if not image_analysis:
-        raise ValueError("Image analysis is required.")
-
-    language = body.get("language", "en")
-    return image_analysis, language
 
 
 @error_handling_decorator
 def lambda_handler(event, context):
-    parse_and_validate(event)
-
     response = {
         "language": "es",
-        "narrator": "zorro astuto",
-        "primary_subject": "El impacto del cambio climático en los desastres naturales",
+        "narrator": "Wise Owl",
+        "primary_subject": "Importancia de los ecosistemas de humedales",
         "climate_concepts": [
-            "Causas y efectos del cambio climático",
-            "Impacto de incendios forestales, sequías y huracanes",
-            "Importancia de la protección ambiental",
+            "ecosistema saludable",
+            "protección costera", 
+            "biodiversidad"
         ],
-        "title": "La Voz del Zorro en Tiempos de Cambio",
-        "story": "En un rincón del vasto bosque, donde los árboles susurraban historias del pasado, vivía un zorro astuto llamado Zorro. Con su pelaje brillante y su curiosidad inquebrantable, Zorro se acercó a una pequeña comunidad de conejos que vivían al borde del bosque. 'Mis queridos amigos,' comenzó Zorro, 'he venido a hablarles sobre el cambio que está transformando nuestro hogar.' Los conejos escucharon atentamente mientras Zorro continuaba, 'El cambio climático está aquí, y junto con él, la furia de la naturaleza se intensifica.' Señaló un árbol chamuscado, aún de pie pero tocado por el fuego devastador. 'Los incendios forestales no solo consumen árboles, sino también el hogar de muchos,' explicó Zorro, sus ojos reflejando la gravedad de la situación. 'Y no son solo los incendios. Las tierras áridas claman por agua, implorando una lluvia que parece nunca llegar,' dijo mientras dirigía su mirada a la tierra agrietada bajo ellos. 'El agua, fuente de vida, se convierte en un recurso más preciado con cada día que pasa.' Los conejos entornaron los ojos al imaginarse la sequía interminable. Zorro entonces alzó la voz un poco más, 'Sobre el océano, los huracanes despliegan su poder, azotando con furia que desafía la tranquilidad de las olas. Cada elemento está en juego, cada átomo se cuestiona su propósito.' Mientras Zorro hablaba, los conejos comenzaron a vislumbrar la interconexión de su mundo, desde los bosques hasta los desiertos y los vastos océanos. 'Pero no todo está perdido,' prometió Zorro, 'Si nosotros, con nuestras pequeñas acciones, podemos unirnos para proteger lo que queda, tal vez haya esperanza.' Los conejos asintieron, reconociendo el llamado a la acción. Ellos, pequeños y numerosos, podían hacer una gran diferencia. 'Recuerden siempre,' concluyó Zorro con un tono alentador, 'La naturaleza ha hablado, y nosotros debemos escuchar. Juntos, podemos devolver el equilibrio que tanto anhelamos.' El viento susurraba suavemente entre las hojas, y en ese momento, los conejos comprendieron que el futuro de su hogar dependía de ellos.",
-        "call_to_action": "Participa en la reforestación de tu comunidad o apoya organizaciones que protegen el medio ambiente.",
-        "confidence_score": 0.98,
-        "analysis_notes": "The image effectively captures three distinct impacts of climate change, useful for illustrating interconnected environmental themes. The lack of human elements highlights the natural scale of these events.",
-        "image_id": "3d0ba72b-2ad7-42ed-8fe0-f30fd4c682e2",
-        "image_url": "https://science.nasa.gov/wp-content/uploads/2023/11/Effects_page_triptych.jpeg?w=4096&format=jpeg",
-        "date_created": "2024-10-19T19:08:32.124292",
-        "story_id": "76db0bd0-df4a-4413-895e-c85b922d5ae2",
-        "image_recognition_output": '{"primary_subject": "Impact of climate change on natural disasters", "environment_type": "Varied: Forest, Arid land, Ocean", "climate_indicators": ["Wildfire", "Drought", "Hurricane"], "biodiversity": {"flora": ["Tree affected by fire"], "fauna": ["None detected"]}, "human_elements": ["None detected"], "weather_conditions": "Extreme weather events depicted", "color_palette": ["Orange", "Brown", "White", "Blue"], "emotional_tone": "Urgent and alarming", "educational_themes": ["Causes and effects of climate change", "Impact of wildfires, droughts, and hurricanes", "Importance of environmental protection"], "storytelling_elements": ["A tree trying to survive a forest fire", "Parched land yearning for rain", "The power of a hurricane over the ocean"], "confidence_score": 0.98, "analysis_notes": "The image effectively captures three distinct impacts of climate change, useful for illustrating interconnected environmental themes. The lack of human elements highlights the natural scale of these events.", "image_id": "3d0ba72b-2ad7-42ed-8fe0-f30fd4c682e2", "image_url": "https://science.nasa.gov/wp-content/uploads/2023/11/Effects_page_triptych.jpeg?w=4096&format=jpeg", "date_created": "2024-10-19T18:44:08.546694"}',
+        "title": "Aventura por el Río Sereno",
+        "story": "En un rincón mágico de la selva tropical de manglares, donde los colores verdes y azules se fusionan, un río serpentea como si estuviera contando secretos antiguos. Sobre sus aguas tranquilas, navega una pequeña embarcación con vistosos remos que rompen apenas la calma del entorno.\n\nDesde la altura de la copa de un árbol robusto, el Sabio Búho observa con ojos atentos. 'Bienvenidos amigos aventureros', dice el Búho con una voz suave y reconfortante. 'Les contaré por qué este lugar es tan especial'.\n\nA medida que el bote se desliza por el agua, el Sabio Búho explica cómo estos manglares actúan como guardianes de la costa. 'Las raíces de los manglares no solo sostienen a los árboles firmemente, sino que también protegen a las costas de la erosión y los fuertes vientos', dice con sabiduría.\n\nMientras el bote avanza, los pequeños exploradores se maravillan al ver la variedad de plantas que adornan las orillas del río. 'Aquí', señala el Sabio Búho, 'cada planta contribuye a un ecosistema saludable. Estas plantas ayudan a filtrar el agua y proporcionan un hogar a diversas especies de animales'.\n\nAunque no se ven muchos animales a simple vista, el Búho les asegura que la biodiverisdad es abundante. 'Aunque no los veamos, aquí viven muchas aves, peces, y pequeños mamíferos. Todos ellos dependen de este ecosistema', afirma el Sabio Búho.\n\nEl cielo despejado refleja una paz serena, pero el Sabio Búho advierte que para mantener esta tranquilidad, debemos proteger estos lugares. 'El cambio climático y la deforestación amenazan nuestro hogar natural. Debemos fomentar la reforestación y preservar estos hábitats preciosos para que continúen protegiéndonos', concluye.\n\nAsí, los aventureros se comprometen a cuidar su entorno natural, inspirados por la sabiduría del Sabio Búho, con la promesa de preservar su casa común.",
+        "call_to_action": {
+            "suggestion": "Planta un árbol para ayudar a conservar los ecosistemas locales y participa en acciones comunitarias de reforestación.",
+            "age_group": "8-12 años",
+            "difficulty_level": "Fácil"
+        },
+        "story_id": "4b8f30b5-bc66-4feb-a008-f8f6b3733062",
+        "image_recognition_output": "{\"primary_subject\": \"River meandering through a dense forest\", \"environment_type\": \"Wetland, riverine forest\", \"climate_indicators\": [\"Lush, dense vegetation indicates healthy ecosystem\"], \"biodiversity\": {\"flora\": [\"Mangroves, tropical forest plants\"], \"fauna\": []}, \"human_elements\": [\"Small boat navigating the river\"], \"weather_conditions\": \"Clear sky with good visibility\", \"color_palette\": [\"Green, blue, brown\"], \"emotional_tone\": \"Tranquil and serene\", \"educational_themes\": [\"Importance of wetland ecosystems\", \"River navigation\", \"Biodiversity in riparian zones\"], \"storytelling_elements\": [\"Journey through a river ecosystem\", \"Human interaction with natural habitats\"], \"analysis_notes\": \"The image highlights the critical role of mangroves in protecting coastal environments.\", \"image_id\": \"b82b7f83-0bcf-4aad-a45f-b4ca343451d0\", \"image_url\": \"https://plus.unsplash.com/premium_photo-1664300792059-863ccfe55932?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9zcXVlfGVufDB8fDB8fHww\", \"date_created\": \"2024-11-02T22:20:32.054848\"}",
+        "image_id": "b82b7f83-0bcf-4aad-a45f-b4ca343451d0",
+        "image_url": "https://plus.unsplash.com/premium_photo-1664300792059-863ccfe55932?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9zcXVlfGVufDB8fDB8fHww",
+        "date_created": "2024-11-02T22:27:40.619541"
     }
-
     return success_response(response)

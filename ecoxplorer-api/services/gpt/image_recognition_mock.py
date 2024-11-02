@@ -1,62 +1,41 @@
-from typing import Dict, Any
-
 from common.utils.lambda_decorators import error_handling_decorator
 from common.utils.response_utils import success_response
-from common.utils.lambda_utils import load_body_from_event
-from common.utils.error_handler import error_response
 
-def parse_and_validate(event: Dict[str, Any]) -> str:
-    body = load_body_from_event(event)
-    image_url = body.get("image_url")
-    if not image_url:
-        raise ValueError("Image URL is required.")
-    return image_url
 
 @error_handling_decorator
 def lambda_handler(event, context):
-    parse_and_validate(event)
-    
     response = {
-        "primary_subject": "Impact of climate change on natural disasters",
-        "environment_type": "Varied: Forest, Arid land, Ocean",
+        "primary_subject": "River meandering through a dense forest",
+        "environment_type": "Wetland, riverine forest",
         "climate_indicators": [
-            "Wildfire",
-            "Drought",
-            "Hurricane"
+            "Lush, dense vegetation indicates healthy ecosystem"
         ],
         "biodiversity": {
             "flora": [
-                "Tree affected by fire"
+                "Mangroves, tropical forest plants"
             ],
-            "fauna": [
-                "None detected"
-            ]
+            "fauna": []
         },
         "human_elements": [
-            "None detected"
+            "Small boat navigating the river"
         ],
-        "weather_conditions": "Extreme weather events depicted",
+        "weather_conditions": "Clear sky with good visibility",
         "color_palette": [
-            "Orange",
-            "Brown",
-            "White",
-            "Blue"
+            "Green, blue, brown"
         ],
-        "emotional_tone": "Urgent and alarming",
+        "emotional_tone": "Tranquil and serene",
         "educational_themes": [
-            "Causes and effects of climate change",
-            "Impact of wildfires, droughts, and hurricanes",
-            "Importance of environmental protection"
+            "Importance of wetland ecosystems",
+            "River navigation", 
+            "Biodiversity in riparian zones"
         ],
         "storytelling_elements": [
-            "A tree trying to survive a forest fire",
-            "Parched land yearning for rain",
-            "The power of a hurricane over the ocean"
+            "Journey through a river ecosystem",
+            "Human interaction with natural habitats"
         ],
-        "confidence_score": 0.98,
-        "analysis_notes": "The image effectively captures three distinct impacts of climate change, useful for illustrating interconnected environmental themes. The lack of human elements highlights the natural scale of these events.",
-        "image_id": "3d0ba72b-2ad7-42ed-8fe0-f30fd4c682e2",
-        "image_url": "https://science.nasa.gov/wp-content/uploads/2023/11/Effects_page_triptych.jpeg?w=4096&format=jpeg",
-        "date_created": "2024-10-19T18:44:08.546694"
+        "analysis_notes": "The image highlights the critical role of mangroves in protecting coastal environments.",
+        "image_id": "b82b7f83-0bcf-4aad-a45f-b4ca343451d0",
+        "image_url": "https://plus.unsplash.com/premium_photo-1664300792059-863ccfe55932?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9zcXVlfGVufDB8fDB8fHww",
+        "date_created": "2024-11-02T22:20:32.054848"
     }
     return success_response(response)

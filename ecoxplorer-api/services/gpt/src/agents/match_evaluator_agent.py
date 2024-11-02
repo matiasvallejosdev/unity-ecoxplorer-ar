@@ -1,7 +1,7 @@
-from typing import Dict, List
+from typing import Dict
 
 from ..models import ModelInterface
-from ...config.prompts import get_image_evaluation_input_message
+from ...config.prompts import get_input_match_agent
 
 
 class MatchAgent:
@@ -14,7 +14,7 @@ class MatchAgent:
         if not image_url or not topic:
             raise ValueError("Invalid request.")
 
-        message = get_image_evaluation_input_message(topic)
+        message = get_input_match_agent(topic)
         self.messages.append(
             {
                 "role": "user",

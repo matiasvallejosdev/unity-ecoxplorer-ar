@@ -9,7 +9,7 @@ from common.utils.parser import extract_json_from_response
 from .src.agents.level_generator_agent import LevelGeneratorAgent
 from .src.openai import OpenAIModel
 
-from .config.prompts import get_level_generator_sys_message
+from .config.prompts import get_sys_level_builder_agent
 
 
 def parse_and_validate(event: Dict) -> Tuple[str, str]:
@@ -30,7 +30,7 @@ def get_level_generator_agent():
         model_engine=os.getenv("OPENAI_GPTMODEL"),
         max_tokens=int(os.getenv("OPENAI_TOKENS", "1000")),
     )
-    system_message = get_level_generator_sys_message()
+    system_message = get_sys_level_builder_agent()
     match_agent = LevelGeneratorAgent(model, system_message)
     return match_agent
 

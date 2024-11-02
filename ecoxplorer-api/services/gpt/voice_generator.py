@@ -1,5 +1,7 @@
 import os
 import time
+import logging
+from typing import Tuple, Dict, Any
 import boto3
 from botocore.exceptions import ClientError
 from .src.audio import OpenAITTSModel
@@ -8,14 +10,36 @@ from common.utils.lambda_decorators import error_handling_decorator
 from common.utils.response_utils import success_response
 from common.utils.lambda_utils import load_body_from_event
 
+# Add character voice mapping configuration
+CHARACTER_VOICES: Dict[str, str] = {
+    "owl": "onyx",
+    "lechuza": "onyx",
+    "fox": "fable",
+    "zorro": "fable",
+    "turtle": "echo",
+    "tortuga": "echo",
+    "dolphin": "nova",
+    "delfin": "nova",
+}
 
-def parse_and_validate(event):
+
+def parse_and_validate(event: Dict[str, Any]) -> Tuple[str, str, str]:
     body = load_body_from_event(event)
     voice_id = body.get("voice_id")
     story_text = body.get("story")
-    narrator = body.get("narrator")
-    if not story_text or not narrator or not voice_id:
-        raise ValueError("Story text, narrator, and voice_id are required.")
+    narrator = body.get("narrator", "").strip()
+
+    errors = []
+    if not story_text:
+        errors.append("story text")
+    if not narrator:
+        errors.append("narrator")
+    if not voice_id:
+        errors.append("voice_id")
+
+    if errors:
+        raise ValueError(f"Missing required fields: {', '.join(errors)}")
+
     return story_text, narrator, voice_id
 
 
@@ -45,40 +69,35 @@ def generate_voice(story_text, narrator, voice_id):
     return voice_output_url, voice
 
 
-def select_character_voice(character):
-    character = character.lower()
-    if "owl" in character or "lechuza" in character:
-        return "onyx"  # A deep, wise-sounding voice
-    elif "fox" in character or "zorro" in character:
-        return "fable"  # A clever, slightly mischievous voice
-    elif "turtle" in character or "tortuga" in character:
-        return "echo"  # A slow, thoughtful voice
-    elif "dolphin" in character or "delfin" in character:
-        return "nova"  # A bright, playful voice
-    else:
-        return "alloy"  # Default voice
+def select_character_voice(character: str) -> str:
+    character = character.lower().strip()
+
+    # Check direct matches in configuration
+    for key, voice in CHARACTER_VOICES.items():
+        if key in character:
+            return voice
+
+    logging.info(
+        f"No specific voice found for character '{character}', using default voice"
+    )
+    return "alloy"
 
 
-def upload_to_s3(tts_result, voice_id):
+def upload_to_s3(tts_result: Dict[str, Any], voice_id: str) -> str:
     s3_client = boto3.client("s3")
     bucket_name = os.environ.get("S3_BUCKET_NAME")
+    if not bucket_name:
+        raise ValueError("S3_BUCKET_NAME environment variable is not set")
+
     folder_name = "voices"
     audio_file_name = f"{folder_name}/tts_audio_{voice_id}.mp3"
 
-    try:
-        # Upload audio file to S3
-        s3_client.put_object(
-            Bucket=bucket_name,
-            Key=audio_file_name,
-            Body=tts_result["audio_data"].getvalue(),
-            ContentType=tts_result["content_type"],
-        )
+    s3_client.put_object(
+        Bucket=bucket_name,
+        Key=audio_file_name,
+        Body=tts_result["audio_data"].getvalue(),
+        ContentType=tts_result["content_type"],
+    )
 
-        # Generate normal S3 URL without expiration
-        region = s3_client.meta.region_name
-        voice_output = (
-            f"https://{bucket_name}.s3.{region}.amazonaws.com/{audio_file_name}"
-        )
-        return voice_output
-    except ClientError as e:
-        raise ValueError(f"Error uploading to S3: {str(e)}")
+    region = s3_client.meta.region_name
+    return f"https://{bucket_name}.s3.{region}.amazonaws.com/{audio_file_name}"

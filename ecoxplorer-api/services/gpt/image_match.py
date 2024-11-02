@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, Tuple, List
+from typing import Any, Dict, Tuple
 
 from common.utils.lambda_decorators import error_handling_decorator
 from common.utils.response_utils import success_response
@@ -9,7 +9,7 @@ from common.utils.parser import extract_json_from_response
 from .src.agents.match_evaluator_agent import MatchAgent
 from .src.openai import OpenAIModel
 
-from .config.prompts import get_image_evaluation_sys_message
+from .config.prompts import get_sys_match_agent
 
 
 def parse_and_validate(event: Dict[str, Any]) -> Tuple[str, str]:
@@ -30,7 +30,7 @@ def get_image_topic_match_agent():
         model_engine=os.getenv("OPENAI_GPTMODEL"),
         max_tokens=int(os.getenv("OPENAI_TOKENS", "1000")),
     )
-    system_message = get_image_evaluation_sys_message()
+    system_message = get_sys_match_agent()
     match_agent = MatchAgent(model, system_message)
     return match_agent
 

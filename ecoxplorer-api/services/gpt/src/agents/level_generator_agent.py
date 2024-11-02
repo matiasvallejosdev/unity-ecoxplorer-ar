@@ -1,7 +1,7 @@
 from typing import Dict
 
 from ..models import ModelInterface
-from ...config.prompts import get_level_generator_input_message
+from ...config.prompts import get_input_level_builder
 
 
 class LevelGeneratorAgent:
@@ -15,7 +15,7 @@ class LevelGeneratorAgent:
         if not topic:
             raise ValueError("Topic must be included to generate a level.")
 
-        message = get_level_generator_input_message(topic, language)
+        message = get_input_level_builder(topic, language)
         self.messages.append({"role": "user", "content": message})
 
         response = self.model.chat_completion(self.messages)
