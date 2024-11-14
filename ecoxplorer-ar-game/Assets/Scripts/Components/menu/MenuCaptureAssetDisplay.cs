@@ -12,7 +12,7 @@ namespace Components
 
         void Start()
         {
-            gameManagerViewModel.OnPlayStory.Subscribe(OnPlayStory);
+            gameManagerViewModel.OnStoryStart.Subscribe(OnPlayStory);
         }
 
         private void OnPlayStory(PlayerStoriesViewModel story)

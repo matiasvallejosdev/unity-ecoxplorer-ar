@@ -41,43 +41,5 @@ namespace Infrastructure
                 return Result<AudioClip>.Failure(ex);
             }
         }
-
-        private async Task<Result<AudioClip>> TransformByteArrayToAudioClip(byte[] audioData)
-        {
-            try
-            {
-                // Create a temporary file with a unique name
-                string tempFileName = $"temp_{Guid.NewGuid()}.dat";
-                string tempPath = Path.Combine(Application.temporaryCachePath, tempFileName);
-                File.WriteAllBytes(tempPath, audioData);
-
-                // Load the file as an AudioClip
-                using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + tempPath, AudioType.UNKNOWN);
-                await www.SendWebRequestAsync();
-
-                if (www.result != UnityWebRequest.Result.Success)
-                {
-                    Debug.LogError($"Failed to load audio clip: {www.error}");
-                    return Result<AudioClip>.Failure(new Exception(www.error));
-                }
-
-                AudioClip audioClip = DownloadHandlerAudioClip.GetContent(www);
-                if (audioClip == null)
-                {
-                    Debug.LogError("Loaded audio clip is null");
-                    return Result<AudioClip>.Failure(new Exception("Loaded audio clip is null"));
-                }
-
-                // Clean up the temporary file
-                File.Delete(tempPath);
-
-                return Result<AudioClip>.Success(audioClip);
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"Error transforming audio data: {ex.Message}");
-                return Result<AudioClip>.Failure(ex);
-            }
-        }
     }
 }

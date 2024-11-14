@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c4509a977c74d218fc104e934c6338, type: 3}
+  m_Name: Topic 6
+  m_EditorClassIdentifier: 
+  topic_id: 6
+  chapter_number: 6
+  topicNameEs: "Explora la Gesti\xF3n de Residuos y Reciclaje"
+  topicNameEn: Waste Management and Recycling
+  topic_description: Focuses on waste reduction, recycling practices, and sustainable
+    waste management solutions to minimize environmental impact and promote resource
+    conservation.
+  keywords: recycling, waste, plastic, landfill, disposal, compost, pollution, garbage,
+    trash, reduction, reuse, contamination, sorting, processing, biodegradable, materials,
+    management, cleanup, litter, sustainability
+  url: no-url

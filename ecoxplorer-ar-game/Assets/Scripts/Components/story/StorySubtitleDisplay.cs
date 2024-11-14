@@ -27,13 +27,17 @@ namespace Components
         public GameManagerViewModel gameManagerViewModel;
 
         [Header("OpenAI TTS Settings")]
-        [SerializeField] private float wordsPerMinute = 155f; // OpenAI TTS average speed
-        [SerializeField] private float pauseAfterPeriod = 0.35f; // Pause after sentence
-        [SerializeField] private float pauseAfterComma = 0.15f; // Pause after comma
-        [SerializeField] private float fadeInDuration = 0.15f;
-        [SerializeField] private float fadeOutDuration = 0.15f;
+        [SerializeField] private float wordsPerMinute = 150f;
+        [SerializeField] private float pauseAfterPeriod = 0.3f;
+        [SerializeField] private float pauseAfterComma = 0.15f;
+        [SerializeField] private float fadeInDuration = 0.05f;
+        [SerializeField] private float fadeOutDuration = 0.05f;
         [SerializeField] private int maxCharsPerLine = 50;
         [SerializeField] private float maxSegmentDuration = 3f;
+
+        [Header("Timing Adjustments")]
+        [SerializeField] private float subtitleOffset = -0.1f;
+        [SerializeField] private float timingTolerance = 0.05f;
 
         [Header("Debug")]
         [SerializeField] private bool showDebugInfo = false;
@@ -45,36 +49,148 @@ namespace Components
 
         void Start()
         {
-            gameManagerViewModel.OnPlayStory
+            if (gameManagerViewModel == null)
+            {
+                Debug.LogError("GameManagerViewModel is not assigned!");
+                return;
+            }
+
+            // Subscribe to story start
+            gameManagerViewModel.OnStoryStart
                 .Subscribe(OnPlayStory)
                 .AddTo(this);
 
-            subtitleLabel.text = string.Empty;
-            subtitleLabel.alpha = 0;
+            // Subscribe to story finish
+            gameManagerViewModel.OnStoryEnd
+                .Subscribe(_ => OnStoryFinish())
+                .AddTo(this);
+
+            ResetSubtitleState();
+        }
+
+        private void ResetSubtitleState()
+        {
+            if (subtitleLabel != null)
+            {
+                subtitleLabel.text = string.Empty;
+                subtitleLabel.alpha = 0;
+            }
+            isPlaying = false;
+            currentSegments = null;
+            updateSubscription?.Dispose();
+            updateSubscription = null;
+        }
+
+        private void OnStoryFinish()
+        {
+            StopSubtitles();
         }
 
         void OnPlayStory(PlayerStoriesViewModel playerStory)
         {
+            if (playerStory == null || string.IsNullOrEmpty(playerStory.story?.story))
+            {
+                Debug.LogError("Invalid story data received");
+                return;
+            }
+
             StopSubtitles();
             currentSegments = GenerateSubtitleSegments(playerStory.story.story, playerStory.audioClip.length);
-            StartSubtitles(playerStory);
+            StartSubtitles();
+        }
+
+        private void StartSubtitles()
+        {
+            if (currentSegments == null || currentSegments.Count == 0 || audioSource == null) 
+            {
+                Debug.LogWarning("Cannot start subtitles: missing segments or audio source");
+                return;
+            }
+
+            isPlaying = true;
+
+            updateSubscription = Observable.EveryUpdate()
+                .Subscribe(_ =>
+                {
+                    if (!isPlaying || audioSource == null) return;
+                    
+                    if (audioSource.isPlaying)
+                    {
+                        float adjustedTime = audioSource.time + subtitleOffset;
+                        UpdateSubtitles(adjustedTime);
+                    }
+                    else if (audioSource.time >= audioSource.clip.length)
+                    {
+                        StopSubtitles();
+                    }
+                })
+                .AddTo(this);
+        }
+
+        private void UpdateSubtitles(float currentTime)
+        {
+            if (currentSegments == null || !isPlaying) return;
+
+            var currentSegment = currentSegments
+                .FirstOrDefault(s => 
+                    currentTime >= (s.startTime - timingTolerance) && 
+                    currentTime < (s.startTime + s.duration + timingTolerance));
+
+            if (currentSegment != null)
+            {
+                if (subtitleLabel.text != currentSegment.text)
+                {
+                    subtitleLabel.text = currentSegment.text;
+                    if (showDebugInfo)
+                    {
+                        Debug.Log($"Showing subtitle at {currentTime:F2}s: {currentSegment.text}");
+                    }
+                }
+
+                float segmentProgress = (currentTime - currentSegment.startTime) / currentSegment.duration;
+                float alpha = 1f;
+
+                if (segmentProgress < fadeInDuration)
+                {
+                    alpha = segmentProgress / fadeInDuration;
+                }
+                else if (segmentProgress > 1f - fadeOutDuration)
+                {
+                    alpha = (1f - segmentProgress) / fadeOutDuration;
+                }
+
+                subtitleLabel.alpha = Mathf.Clamp01(alpha);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(subtitleLabel.text))
+                {
+                    subtitleLabel.text = string.Empty;
+                    subtitleLabel.alpha = 0;
+                }
+            }
+        }
+
+        private void StopSubtitles()
+        {
+            isPlaying = false;
+            updateSubscription?.Dispose();
+            updateSubscription = null;
+            ResetSubtitleState();
         }
 
         private List<SubtitleSegment> GenerateSubtitleSegments(string storyText, float audioDuration)
         {
             var segments = new List<SubtitleSegment>();
-            float baseTimePerWord = 60f / wordsPerMinute; // Time per word in seconds
+            float baseTimePerWord = 60f / wordsPerMinute;
+            float currentTime = 0f;
 
-            // Split into sentences first
             var sentences = Regex.Split(storyText, @"(?<=[.!?])\s+")
                 .Where(s => !string.IsNullOrWhiteSpace(s))
                 .Select(s => s.Trim());
 
-            float currentTime = 0f;
-
             foreach (var sentence in sentences)
             {
-                // Split sentence into chunks that include punctuation
                 var chunks = Regex.Split(sentence, @"((?<=[,;:])\s+)")
                     .Where(s => !string.IsNullOrWhiteSpace(s))
                     .Select(s => s.Trim());
@@ -84,7 +200,6 @@ namespace Components
                     var words = chunk.Split(' ');
                     float chunkDuration = words.Length * baseTimePerWord;
 
-                    // Add pauses for punctuation
                     if (chunk.EndsWith(".") || chunk.EndsWith("!") || chunk.EndsWith("?"))
                     {
                         chunkDuration += pauseAfterPeriod;
@@ -94,7 +209,6 @@ namespace Components
                         chunkDuration += pauseAfterComma;
                     }
 
-                    // Split long chunks into smaller segments
                     if (chunk.Length > maxCharsPerLine || chunkDuration > maxSegmentDuration)
                     {
                         var subChunks = SplitIntoLines(chunk, maxCharsPerLine);
@@ -127,7 +241,6 @@ namespace Components
                 }
             }
 
-            // Normalize timings to match audio duration
             float totalDuration = segments.Sum(s => s.duration);
             float scaleFactor = audioDuration / totalDuration;
 
@@ -177,84 +290,10 @@ namespace Components
             return lines;
         }
 
-        private void StartSubtitles(PlayerStoriesViewModel playerStory)
-        {
-            if (currentSegments == null || currentSegments.Count == 0) return;
-
-            isPlaying = true;
-
-            updateSubscription = Observable.EveryUpdate()
-                .Subscribe(_ =>
-                {
-                    if (isPlaying && audioSource != null)
-                    {
-                        UpdateSubtitles(audioSource.time);
-                    }
-                })
-                .AddTo(this);
-        }
-
-        private void UpdateSubtitles(float currentTime)
-        {
-            var currentSegment = currentSegments
-                .FirstOrDefault(s =>
-                    currentTime >= s.startTime &&
-                    currentTime < s.startTime + s.duration);
-
-            if (currentSegment != null)
-            {
-                if (subtitleLabel.text != currentSegment.text)
-                {
-                    subtitleLabel.text = currentSegment.text;
-                    if (showDebugInfo)
-                    {
-                        Debug.Log($"Showing subtitle at {currentTime:F2}s: {currentSegment.text}");
-                    }
-                }
-
-                float segmentProgress = (currentTime - currentSegment.startTime) / currentSegment.duration;
-                float alpha = 1f;
-
-                if (segmentProgress < fadeInDuration)
-                {
-                    alpha = segmentProgress / fadeInDuration;
-                }
-                else if (segmentProgress > 1 - fadeOutDuration)
-                {
-                    alpha = (1 - segmentProgress) / fadeOutDuration;
-                }
-
-                subtitleLabel.alpha = Mathf.Clamp01(alpha);
-            }
-            else
-            {
-                subtitleLabel.text = string.Empty;
-                subtitleLabel.alpha = 0;
-            }
-        }
-
-        private void StopSubtitles()
-        {
-            isPlaying = false;
-            updateSubscription?.Dispose();
-            subtitleLabel.text = string.Empty;
-            subtitleLabel.alpha = 0;
-            currentSegments = null;
-        }
-
         private void OnDestroy()
         {
-            updateSubscription?.Dispose();
+            StopSubtitles();
             onSubtitleEnd?.Dispose();
-        }
-
-        public void AdjustGlobalOffset(float offsetSeconds)
-        {
-            if (currentSegments == null) return;
-            foreach (var segment in currentSegments)
-            {
-                segment.startTime += offsetSeconds;
-            }
         }
     }
 }

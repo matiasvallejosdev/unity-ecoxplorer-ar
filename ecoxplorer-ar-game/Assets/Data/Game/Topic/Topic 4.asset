@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c4509a977c74d218fc104e934c6338, type: 3}
+  m_Name: Topic 4
+  m_EditorClassIdentifier: 
+  topic_id: 4
+  chapter_number: 4
+  topicNameEs: "Explora la Protecci\xF3n y Restauraci\xF3n de Bosques"
+  topicNameEn: Forest Protection and Restoration
+  topic_description: Addresses forest conservation, reforestation efforts, and the
+    importance of maintaining woodland ecosystems for biodiversity and environmental
+    health.
+  keywords: forest, trees, deforestation, reforestation, biodiversity, woodland,
+    jungle, canopy, logging, conservation, ecosystem, habitat, rainforest, timber,
+    plantation, growth, native, preservation, flora, sustainability
+  url: no-url

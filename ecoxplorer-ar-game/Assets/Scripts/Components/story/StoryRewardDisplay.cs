@@ -11,22 +11,28 @@ namespace Components
         public GameManagerViewModel gameManagerViewModel;
         public RawImage[] slots;
         public AudioSource audioSource;
+        public Texture2D icon;
 
         void Start()
         {
             gameManagerViewModel.storiesCompleted.Subscribe(OnStoriesCompleted).AddTo(this);
         }
-
         public void OnStoriesCompleted(int storiesCompleted)
         {
-            var index = storiesCompleted - 1;
-            if (index < slots.Length)
+            if (storiesCompleted <= 0 || storiesCompleted > slots.Length)
             {
-                Color color = slots[storiesCompleted].color;
-                color.a = 1f; // Set alpha to 1 for full opacity
-                slots[index].color = color;
-                audioSource.Play();
+                return;
             }
+
+            for (int i = 0; i < storiesCompleted && i < slots.Length; i++)
+            {
+                Color color = Color.white;
+                color.a = 1f; // Set alpha to 1 for full opacity
+                slots[i].color = color;
+                slots[i].texture = icon;
+            }
+
+            audioSource.Play();
         }
     }
 }

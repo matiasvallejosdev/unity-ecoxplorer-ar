@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5cf07be12fca41949d78247b1704ff5, type: 3}
+  m_Name: Level Data
+  m_EditorClassIdentifier: 
+  levelName: Guardianes del Bosque
+  levelDescription: "\xDAnete al B\xFAho Sabio en una aventura por el bosque. Aprende
+    sobre la importancia de los \xE1rboles, los desaf\xEDos del desmonte y c\xF3mo
+    puedes ayudar en la conservaci\xF3n y reforestaci\xF3n."
+  levelEndMessage: "Con cada \xE1rbol protegido, damos un paso hacia un mundo m\xE1s
+    verde. Gracias a B\xFAho Sabio, ahora eres un guardi\xE1n del bosque, listo para
+    preservar nuestra biodiversidad para las generaciones futuras."
+  narratorName: "B\xFAho Sabio"
+  primarySubject: "Conservaci\xF3n de bosques y biodiversidad"
+  guidanceSteps:
+  - "Encuentra el \xE1rbol m\xE1s grande"
+  - Haz zoom para ver detalles del tronco
+  - Descubre especies nativas del bosque
+  - "Ubica \xE1reas de reforestaci\xF3n"
+  - "Compara el dosel de diferentes \xE1rboles"

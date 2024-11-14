@@ -7,6 +7,6 @@ namespace Infrastructure
 {
     public interface IStorageImageGateway
     {
-        Task<Result<string>> UploadImageAndGetUrl(StorageServiceViewModel storageService, Texture2D texture);
+        Task<Result<string>> UploadImageAndGetUrl(StorageServiceViewModel storageService, Texture2D texture, string image_id);
     }
 }

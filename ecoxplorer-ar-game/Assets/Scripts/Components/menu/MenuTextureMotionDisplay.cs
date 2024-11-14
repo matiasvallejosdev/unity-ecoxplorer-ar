@@ -14,13 +14,13 @@ namespace Components
 
         private void Start()
         {
-            gameManagerViewModel.isScanning.Subscribe(OnScanningChanged).AddTo(this);
+            gameManagerViewModel.isSessionStarted.Subscribe(OnSessionStartedChanged).AddTo(this);
         }
 
-        private void OnScanningChanged(bool isActive)
+        private void OnSessionStartedChanged(bool isPlaying)
         {
-            rawImage.enabled = isActive;
-            animator.SetBool("Scanning", isActive);
+            rawImage.enabled = isPlaying;
+            animator.SetBool("Scanning", isPlaying);
         }
     }
 }

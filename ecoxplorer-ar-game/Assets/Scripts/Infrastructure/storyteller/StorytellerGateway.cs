@@ -11,14 +11,14 @@ namespace Infrastructure
 {
     public class StorytellerGateway : IStorytellerGateway
     {
-        public async Task<Result<StorytellerGptResponse>> GenerateStory(StorytellerViewModel storytellerViewModel, EnvironmentalImageAnalysisResponse imageAnalysisResponse, string language = "es")
+        public async Task<Result<StorytellerGptResponse>> GenerateStory(StorytellerViewModel storytellerViewModel, EnvironmentalImageAnalysisResponse imageAnalysisResponse, string topic, string language = "es")
         {
             Debug.Log($"Starting story generation for image analysis response");
             try
             {
                 var apiService = storytellerViewModel.apiService;
                 Debug.Log($"Using API service: {apiService.API_URL}");
-                var response = await GetStorytellerGptResponseAsync(storytellerViewModel, imageAnalysisResponse, language);
+                var response = await GetStorytellerGptResponseAsync(storytellerViewModel, imageAnalysisResponse, language, topic);
                 Debug.Log("Story generation completed successfully");
                 return Result<StorytellerGptResponse>.Success(response);
             }
@@ -29,7 +29,7 @@ namespace Infrastructure
             }
         }
 
-        private async Task<StorytellerGptResponse> GetStorytellerGptResponseAsync(StorytellerViewModel storytellerViewModel, EnvironmentalImageAnalysisResponse imageAnalysisResponse, string language)
+        private async Task<StorytellerGptResponse> GetStorytellerGptResponseAsync(StorytellerViewModel storytellerViewModel, EnvironmentalImageAnalysisResponse imageAnalysisResponse, string language, string topic)
         {
             var apiService = storytellerViewModel.apiService;
             var isMock = storytellerViewModel.testMode;
@@ -39,7 +39,8 @@ namespace Infrastructure
             var storytellerRequest = new StorytellerGptRequest
             {
                 image_analysis = imageAnalysisResponse,
-                language = language
+                language = language,
+                topic = topic
             };
             string jsonData = JsonConvert.SerializeObject(storytellerRequest);
             Debug.Log($"{(isMock ? "Mock" : "")} Request body: {jsonData}");
@@ -61,6 +62,7 @@ namespace Infrastructure
 
             Debug.Log($"{(isMock ? "Mock " : "")}Web request successful, parsing response");
             var response = JObject.Parse(www.downloadHandler.text);
+            Debug.Log($"{(isMock ? "Mock " : "")}Response: {response}");
             return response.ToObject<StorytellerGptResponse>();
         }
     }

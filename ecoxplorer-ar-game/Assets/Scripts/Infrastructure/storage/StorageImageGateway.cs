@@ -10,13 +10,13 @@ namespace Infrastructure
 {
     public class StorageImageGateway : IStorageImageGateway
     {
-        public async Task<Result<string>> UploadImageAndGetUrl(StorageServiceViewModel storageService, Texture2D texture)
+        public async Task<Result<string>> UploadImageAndGetUrl(StorageServiceViewModel storageService, Texture2D texture, string image_id)
         {
             try
             {
                 Debug.Log("Uploading image to S3...");
                 Debug.Log($"S3 Bucket: {storageService.BUCKET_NAME}, Region: {storageService.BUCKET_REGION}");
-                var key = $"unity_{DateTime.Now:yyyyMMddHHmmss}.png";
+                var key = $"unity_{DateTime.Now:yyyyMMddHHmmss}_{image_id}.png";
                 var response = await GetS3UploadUrl(storageService.apiService, key);
                 Debug.Log(JsonConvert.SerializeObject(response));
                 var uploadResult = await UploadImageToS3(response, texture);

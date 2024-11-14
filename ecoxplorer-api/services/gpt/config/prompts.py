@@ -140,7 +140,7 @@ Verify story structure:
 
 [Step 3: Content Development]
 - Craft title (max. 50 characters)
-- Develop main story (min. 1200, max. 4000 characters)
+- Develop main story (min. 1200, max. 3000 characters)
 - Include educational elements
 - Create a relevant call-to-action
 - Adapt language and cultural elements
@@ -159,7 +159,7 @@ Content quality check:
 	"primary_subject": "[Main environmental focus]", 
 	"climate_concepts": [ "concept1", "concept2", "concept3" ], 
 	"title": "[Engaging title - max 50 chars]", 
-	"story": "[Main narrative - 1,200-4,000 chars]", 
+	"story": "[Main narrative - 1,200-3,000 chars]", 
 	"call_to_action": { "suggestion": "[Environmental action]", 	"age_group": "8-12 years", "difficulty_level": "[Easy/Moderate]" } 
 }
 </output><verification> 
@@ -255,8 +255,8 @@ You are an expert building levels for a multilingual augmented reality (AR) game
     - Title: Maximum 50 characters
     - Introduction: 250-300 characters
     - Final Story: 250-300 characters
-    - Instructions: Maximum 80 characters per point
-    - Number of Instructions: 3-5 guidance points
+    - Instructions: Maximum 80 characters per point, must specify exact objects/scenes to capture
+    - Number of Instructions: 4 to 5 specific AR capture guidance points
     - Language: Multiple languages supported
 </context>
 
@@ -264,7 +264,8 @@ You are an expert building levels for a multilingual augmented reality (AR) game
 [Step 1: Level Analysis]
 - Process the provided topic
 - Identify key educational elements
-- Identify possibles instructions
+- Identify specific, capturable objects/scenes for the topic
+- Plan clear, actionable AR capture instructions
 - Extract relevant climate concepts
 - Plan AR interaction points
 - Consider cultural context and language
@@ -285,6 +286,9 @@ Level Understanding Check:
 
 2. Educational Framework:
 - Select core climate concepts
+- Define specific objects/scenes to capture
+- Create clear "find and capture" instructions
+- Plan progressive difficulty in captures
 - Plan AR interaction points
 - Design guidance flow
 

@@ -12,11 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ab7f210bb5641c089347f1f48eacb5, type: 3}
   m_Name: Game Manager
   m_EditorClassIdentifier: 
+  pressToPlayInstruction: Manten presionado y captura
+  startInstruction: Explora y observa tu entorno
+  endInstruction: "\xA1Felicidades! Has completado la aventura."
+  wrongMatchInstruction: 'Explore y vuelva a intentarlo en '
+  waitAfterStoryInstruction: 'Bien hecho! Espere '
+  timeLineGuideline: 9
+  storiesToComplete: 3
+  requiredPressDuration: 15
+  storyDelay: 8750
+  timeBetweenMatches: 12
+  timeBetweenStories: 30
+  textureWidth: 650
+  textureHeight: 650
+  saveLocalScreenshoot: 0
+  topics:
+  - {fileID: 11400000, guid: be7dbd8fb06384bfaac99f63c31035a4, type: 2}
+  - {fileID: 11400000, guid: 8413b0e69507a4f9c9b67f8752da0ecc, type: 2}
+  - {fileID: 11400000, guid: f3441b0fbc9ab4f6891f6b2a8f884d3f, type: 2}
+  - {fileID: 11400000, guid: 87479c4d819cb43b081e0015bb7d5a96, type: 2}
+  - {fileID: 11400000, guid: 87479b308d4bf4e3f8b6fc46fdd3a419, type: 2}
+  - {fileID: 11400000, guid: 9ac092832692342d9921d68769a73ad1, type: 2}
+  currentTopicData: {fileID: 11400000, guid: 8413b0e69507a4f9c9b67f8752da0ecc, type: 2}
+  currentLevelData: {fileID: 0}
+  currentStoryState: 0
+  currentScene: 2
   playerData: {fileID: 11400000, guid: 5a8220c374f1a427697eeefba5b48af1, type: 2}
   playerStories: []
-  textureWidth: 750
-  textureHeight: 750
-  saveLocalScreenshoot: 1
+  currentPlayerStory: {fileID: 0}
   recogntionObjects:
   - {fileID: 11400000, guid: 7a7c2eed4629c43bdadf9e174de0fa1a, type: 2}
   - {fileID: 11400000, guid: efa0babbb53cc40078fc5f082d6149e7, type: 2}

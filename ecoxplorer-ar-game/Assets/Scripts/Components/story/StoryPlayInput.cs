@@ -9,19 +9,15 @@ namespace Components
     public class StoryPlayInput : MonoBehaviour
     {
         public GameManagerViewModel gameManagerViewModel;
-        public GameCmdFactory gameCmdFactory;
+        public StoryCmdFactory storyCmdFactory;
 
         void Start()
         {
-            gameManagerViewModel.OnPlayStory.Subscribe(OnPlayStory);
+            gameManagerViewModel.OnStoryStart.Subscribe(OnPlayStory);
         }
 
         private void OnPlayStory(PlayerStoriesViewModel story)
         {
-            // Start the story
-            gameCmdFactory.StoryCmd(gameManagerViewModel, story).Execute();
-
-            // Finish the story after the audio clip length + 1 second
             var seconds = story.audioClip.length + 1.0f;
             StartCoroutine(FinishPlayStory(seconds));
         }
@@ -29,7 +25,7 @@ namespace Components
         private IEnumerator FinishPlayStory(float seconds)
         {
             yield return new WaitForSeconds(seconds);
-            gameCmdFactory.FinishPlayStoryCmd(gameManagerViewModel).Execute();
+            storyCmdFactory.StoryFinishCmd(gameManagerViewModel).Execute();
         }
     }
 }

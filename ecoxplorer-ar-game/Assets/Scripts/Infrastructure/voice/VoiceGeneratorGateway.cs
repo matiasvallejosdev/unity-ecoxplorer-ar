@@ -29,7 +29,7 @@ namespace Infrastructure
             }
         }
 
-        private async Task<VoiceGeneratorResponse> GenerateVoice(ApiServiceViewModel apiService, VoiceGeneratorViewModel voiceGeneratorViewModel, string story, string story_id, string narrator)
+        private async Task<VoiceGeneratorResponse> GenerateVoice(ApiServiceViewModel apiService, VoiceGeneratorViewModel voiceGeneratorViewModel, string story, string voice_id, string narrator)
         {
             var endpoint = voiceGeneratorViewModel.endpoint;
             var isMock = voiceGeneratorViewModel.testMode;
@@ -37,7 +37,7 @@ namespace Infrastructure
             Debug.Log($"Sending {(isMock ? "mock" : "")} request to: {postUrl}");
             var voiceGeneratorRequest = new VoiceGeneratorRequest
             {
-                story_id = story_id,
+                voice_id = voice_id,
                 story = story,
                 narrator = narrator
             };

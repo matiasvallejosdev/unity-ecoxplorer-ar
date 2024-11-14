@@ -7,6 +7,6 @@ namespace Infrastructure
 {
     public interface IStorytellerGateway
     {
-        Task<Result<StorytellerGptResponse>> GenerateStory(StorytellerViewModel storytellerViewModel, EnvironmentalImageAnalysisResponse imageAnalysisResponse, string language="es");
+        Task<Result<StorytellerGptResponse>> GenerateStory(StorytellerViewModel storytellerViewModel, EnvironmentalImageAnalysisResponse imageAnalysisResponse, string topic, string language = "es");
     }
 }
